@@ -1,0 +1,699 @@
+{
+  "nazwa": "System wspomagający wybór ścieżki specjalizacji na studiach",
+  "cel": "decyzja",
+  "atrybuty": {
+    "preferowany_obszar": {
+      "typ": "wybor",
+      "pytanie": "Który obszar najbardziej Cię interesuje?",
+      "wartosci": [
+        "programowanie",
+        "sieci",
+        "grafika",
+        "analiza danych"
+      ]
+    },
+    "ocena_matematyki": {
+      "typ": "liczba",
+      "pytanie": "Jaka jest Twoja ocena z matematyki?",
+      "zakres": [
+        2,
+        5
+      ]
+    },
+    "tryb_pracy": {
+      "typ": "wybor",
+      "pytanie": "Wolisz pracować indywidualnie czy zespołowo?",
+      "wartosci": [
+        "indywidualny",
+        "zespolowy"
+      ]
+    },
+    "znajomosc_programowania": {
+      "typ": "wybor",
+      "pytanie": "Jaki jest Twój poziom programowania?",
+      "wartosci": [
+        "podstawowa",
+        "zaawansowana"
+      ]
+    },
+    "poziom_matematyki": {
+      "typ": "wniosek",
+      "wartosci": [
+        "wysoki",
+        "sredni",
+        "niski"
+      ]
+    },
+    "profil": {
+      "typ": "wniosek",
+      "wartosci": [
+        "techniczny",
+        "kreatywny",
+        "analityczny",
+        "sieciowy"
+      ]
+    },
+    "decyzja": {
+      "typ": "wniosek",
+      "wartosci": [
+        "DATA SCIENCE",
+        "BACKEND",
+        "FRONTEND",
+        "DEVOPS/SIECI",
+        "GRAFIKA/UX"
+      ]
+    }
+  },
+  "reguly": [
+    {
+      "id": "R1",
+      "jesli": [
+        [
+          "ocena_matematyki",
+          ">=",
+          4.0
+        ]
+      ],
+      "to": [
+        "poziom_matematyki",
+        "wysoki"
+      ],
+      "metafora": "Wynik co najmniej 4.0 wskazuje na mocne podstawy matematyczne."
+    },
+    {
+      "id": "R2",
+      "jesli": [
+        [
+          "ocena_matematyki",
+          ">=",
+          3.5
+        ],
+        [
+          "ocena_matematyki",
+          "<",
+          4.0
+        ]
+      ],
+      "to": [
+        "poziom_matematyki",
+        "sredni"
+      ],
+      "metafora": "Zakres od 3.5 do 4.0 oznacza średni poziom matematyki."
+    },
+    {
+      "id": "R3",
+      "jesli": [
+        [
+          "ocena_matematyki",
+          "<",
+          3.5
+        ]
+      ],
+      "to": [
+        "poziom_matematyki",
+        "niski"
+      ],
+      "metafora": "Wynik poniżej 3.5 wskazuje na potrzebę rozwijania matematyki."
+    },
+    {
+      "id": "R4",
+      "jesli": [
+        [
+          "preferowany_obszar",
+          "==",
+          "programowanie"
+        ]
+      ],
+      "to": [
+        "profil",
+        "techniczny"
+      ],
+      "metafora": "Preferowany obszar jest wskazówką głównego profilu zainteresowań."
+    },
+    {
+      "id": "R5",
+      "jesli": [
+        [
+          "preferowany_obszar",
+          "==",
+          "sieci"
+        ]
+      ],
+      "to": [
+        "profil",
+        "sieciowy"
+      ],
+      "metafora": "Preferowany obszar jest wskazówką głównego profilu zainteresowań."
+    },
+    {
+      "id": "R6",
+      "jesli": [
+        [
+          "preferowany_obszar",
+          "==",
+          "grafika"
+        ]
+      ],
+      "to": [
+        "profil",
+        "kreatywny"
+      ],
+      "metafora": "Preferowany obszar jest wskazówką głównego profilu zainteresowań."
+    },
+    {
+      "id": "R7",
+      "jesli": [
+        [
+          "preferowany_obszar",
+          "==",
+          "analiza danych"
+        ]
+      ],
+      "to": [
+        "profil",
+        "analityczny"
+      ],
+      "metafora": "Preferowany obszar jest wskazówką głównego profilu zainteresowań."
+    },
+    {
+      "id": "R8",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "techniczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "zespolowy"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "wysoki"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "BACKEND"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "BACKEND — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R9",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "techniczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "indywidualny"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "wysoki"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "BACKEND"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "BACKEND — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R10",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "techniczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "zespolowy"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "sredni"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "BACKEND"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "BACKEND — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R11",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "techniczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "indywidualny"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "sredni"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "BACKEND"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "BACKEND — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R12",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "techniczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "zespolowy"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "niski"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "BACKEND"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "BACKEND — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R13",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "techniczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "indywidualny"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "niski"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "BACKEND"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "BACKEND — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R14",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "analityczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "zespolowy"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "wysoki"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "DATA SCIENCE"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "DATA SCIENCE — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R15",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "analityczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "indywidualny"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "wysoki"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "DATA SCIENCE"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "DATA SCIENCE — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R16",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "analityczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "zespolowy"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "sredni"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "DATA SCIENCE"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "DATA SCIENCE — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R17",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "analityczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "indywidualny"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "sredni"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "DATA SCIENCE"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "DATA SCIENCE — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R18",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "analityczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "zespolowy"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "niski"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "DATA SCIENCE"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "DATA SCIENCE — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R19",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "analityczny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "indywidualny"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "niski"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "DATA SCIENCE"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "DATA SCIENCE — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R20",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "kreatywny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "zespolowy"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "wysoki"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "GRAFIKA/UX"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "GRAFIKA/UX — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R21",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "kreatywny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "indywidualny"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "wysoki"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "GRAFIKA/UX"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "GRAFIKA/UX — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R22",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "kreatywny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "zespolowy"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "sredni"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "GRAFIKA/UX"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "GRAFIKA/UX — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R23",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "kreatywny"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "indywidualny"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "sredni"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "GRAFIKA/UX"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "GRAFIKA/UX — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R24",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "sieciowy"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "zespolowy"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "wysoki"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "DEVOPS/SIECI"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "DEVOPS/SIECI — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R25",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "sieciowy"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "indywidualny"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "wysoki"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "DEVOPS/SIECI"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "DEVOPS/SIECI — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R26",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "sieciowy"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "zespolowy"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "sredni"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "DEVOPS/SIECI"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "DEVOPS/SIECI — proponowana ścieżka specjalizacji."
+    },
+    {
+      "id": "R27",
+      "jesli": [
+        [
+          "profil",
+          "==",
+          "sieciowy"
+        ],
+        [
+          "tryb_pracy",
+          "==",
+          "indywidualny"
+        ],
+        [
+          "poziom_matematyki",
+          "==",
+          "sredni"
+        ]
+      ],
+      "to": [
+        "decyzja",
+        "DEVOPS/SIECI"
+      ],
+      "metafora": "Połączenie profilu, preferowanego trybu i przygotowania wyznacza dopasowaną ścieżkę.",
+      "coto": "DEVOPS/SIECI — proponowana ścieżka specjalizacji."
+    }
+  ]
+}

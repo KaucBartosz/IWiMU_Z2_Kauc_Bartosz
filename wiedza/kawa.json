@@ -1,0 +1,48 @@
+﻿{
+  "cel": "kawa",
+  "atrybuty": {
+    "temperatura": {"typ": "liczba", "pytanie": "Jaka jest temperatura na zewnątrz?"},
+    "pora_dnia": {"typ": "tekst", "wartosci": ["rano", "popołudnie", "wieczór"], "pytanie": "Jaka jest pora dnia?"},
+    "dodatek": {"typ": "tekst", "wartosci": ["brak", "mleko", "czekolada"], "pytanie": "Jaki dodatek do kawy?"},
+    "kofeina_ok": {"typ": "tekst", "wartosci": ["tak", "nie"], "pytanie": "Czy kofeina jest dozwolona?"},
+    "baza_kawy": {"typ": "wniosek"},
+    "kawa": {"typ": "wniosek"}
+  },
+  "reguly": [
+    {
+      "id": "R2",
+      "jesli": [["pora_dnia", "==", "rano"], ["kofeina_ok", "==", "tak"]],
+      "to": ["baza_kawy", "mocna"]
+    },
+    {
+      "id": "R4",
+      "jesli": [["baza_kawy", "==", "mocna"], ["dodatek", "==", "brak"]],
+      "to": ["kawa", "espresso"]
+    },
+    {
+      "id": "R15",
+      "jesli": [["baza_kawy", "==", "mocna"], ["temperatura", "<", 20], ["pora_dnia", "==", "rano"]],
+      "to": ["kawa", "espresso"]
+    },
+    {
+      "id": "R5",
+      "jesli": [["temperatura", ">=", 25], ["pora_dnia", "==", "popołudnie"], ["dodatek", "==", "czekolada"], ["kofeina_ok", "==", "tak"]],
+      "to": ["kawa", "chocolate cold coffee"]
+    },
+    {
+      "id": "R6",
+      "jesli": [["temperatura", "<", 15], ["pora_dnia", "==", "wieczór"], ["dodatek", "==", "mleko"], ["kofeina_ok", "==", "tak"]],
+      "to": ["kawa", "latte bezkofeinowe"]
+    },
+    {
+      "id": "R7",
+      "jesli": [["temperatura", ">=", 20], ["temperatura", "<", 30], ["pora_dnia", "==", "rano"], ["dodatek", "==", "mleko"], ["kofeina_ok", "==", "nie"]],
+      "to": ["kawa", "mrożona kawa bezkofeinowa"]
+    },
+    {
+      "id": "R8",
+      "jesli": [["temperatura", ">=", 20], ["pora_dnia", "==", "popołudnie"], ["dodatek", "==", "mleko"], ["kofeina_ok", "==", "tak"]],
+      "to": ["kawa", "latte"]
+    }
+  ]
+}
